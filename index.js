@@ -9,7 +9,7 @@ const server = createServer(app)
 const fs = require("fs")
 const io = new Server(server, {
     cors: {
-      origin: "*"
+      origin: "https://sbsjashn24.web.app/"
     }
   })
 var path = require('path');
