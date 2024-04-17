@@ -66,7 +66,7 @@ io.on("connection", (socket) => {
                     } else {
                         console.log('file does not exists');
                     }
-                }
+                })
                 console.log(filename)
                 fs.writeFileSync(filename, JSON.stringify(data1))
                 console.log("changed")
