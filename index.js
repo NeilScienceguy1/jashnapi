@@ -60,6 +60,13 @@ io.on("connection", (socket) => {
         if (data1?.length > 0 && grade == "9" || grade == "10" || grade == "11" || grade == "12" ) {
             if (locked == false) {
                 let filename = path.join(process.cwd(), `final${grade}.json`)
+                fs.exists(filename, function (exists) {
+                    if (exists) {
+                        console.log("exists")
+                    } else {
+                        console.log('file does not exists');
+                    }
+                }
                 console.log(filename)
                 fs.writeFileSync(filename, JSON.stringify(data1))
                 console.log("changed")
