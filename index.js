@@ -55,6 +55,7 @@ io.on("connection", (socket) => {
             if (locked == false) {
                 let filename = path.join(process.cwd(), `final${grade}.json`)
                 fs.writeFileSync(filename, JSON.stringify(data1))
+                console.log("changed")
                 socket.broadcast.emit("data-change-server", data1)
             }
         }
