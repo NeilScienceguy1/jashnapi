@@ -51,7 +51,8 @@ io.on("connection", (socket) => {
     socket.on("data-change", (data1, grade) => {
         if (data1?.length > 0 && grade == "9" || grade == "10" || grade == "11" || grade == "12" ) {
             if (locked == false) {
-                fs.writeFileSync(`./final${grade}.json`, JSON.stringify(data1))
+                let filename = path.join(process.cwd(), `final${grade}.json`)
+                fs.writeFileSync(filename, JSON.stringify(data1))
                 socket.broadcast.emit("data-change-server", data1)
             }
         }
@@ -77,14 +78,14 @@ app.get("/clientcount", (req, res) => {
 app.get("/:grade", (req, res) => {
     const grade = req.params.grade
     if (grade == "9" || grade == "10" || grade == "11" || grade == "12") {
-        let file = `./final${grade}.json`
+        let file = path.join(process.cwd(), `final${grade}.json`)
         let JSONdata = fs.readFileSync(file)
         let data = JSON.parse(JSONdata)
         return res.send(data)
     } else {
         let students = []
         for (let i = 9; i <=12; i++) {
-            let data = JSON.parse(fs.readFileSync(`./final${i}.json`))
+            let data = JSON.parse(fs.readFileSync(path.join(process.cwd(), `final${i}.json`)))
             data.forEach(stu => {
                 if (stu["Event 1"].toLowerCase() == grade.toLowerCase() || stu["Event 2"].toLowerCase() == grade.toLowerCase() || stu["Event 3"].toLowerCase() == grade.toLowerCase() || stu["Event 4"].toLowerCase() == grade.toLowerCase()) {
                     students.push(stu)
