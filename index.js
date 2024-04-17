@@ -29,7 +29,7 @@ function getRandomColor() {
 }
 
 io.on("connection", (socket) => {
-    
+    console.log("connect")
     socket.emit("highlightChange", highlights)
     socket.on("clientLocationChange", (socketId, location) => {
         if (allClients.indexOf(socketId) == -1) {
