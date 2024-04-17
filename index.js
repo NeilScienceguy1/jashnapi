@@ -12,6 +12,8 @@ const io = new Server(server, {
       origin: "http://localhost:3000"
     }
   })
+var path = require('path');
+
 
 let locked = false;
 
