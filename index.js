@@ -8,8 +8,9 @@ app.use(express.json())
 const server = createServer(app)
 const fs = require("fs")
 const io = new Server(server, {
+    path: "/socket.io",
     cors: {
-      origin: "https://sbsjashn24.web.app"
+      origin: "*"
     }
   })
 var path = require('path');
